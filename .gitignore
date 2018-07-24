@@ -1,0 +1,12 @@
+target/
+*/.idea/artifacts/
+*/.idea/workspace.xml
+*/.idea/task.xml
+*/.idea/dictionaries/*.xml
+*/.idea/libraries/*.xml
+*/.idea/*
+out/
+*.iml
+brainstation-id/.idea/
+
+.idea/
