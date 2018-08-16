@@ -3,11 +3,18 @@ import pattern.StructuralAdapterDesignPattern.SocketAdapter;
 import pattern.StructuralAdapterDesignPattern.SocketObjectAdapterImpl;
 import pattern.StructuralAdapterDesignPattern.Volt;
 import pattern.builderDesign.Computer;
-import templatepattern.GlassHouse;
-import templatepattern.HouseTemplate;
-import templatepattern.WoodenHouse;
+import pattern.chainofresponsibility.ATMDispenseChain;
+import pattern.chainofresponsibility.Currency;
+import pattern.mediator.ChatMediator;
+import pattern.mediator.ChatMediatorImpl;
+import pattern.mediator.User;
+import pattern.mediator.UserImpl;
+import pattern.templatepattern.GlassHouse;
+import pattern.templatepattern.HouseTemplate;
+import pattern.templatepattern.WoodenHouse;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -18,11 +25,44 @@ public class Main {
                 "500 GB", "2 GB").setBluetoothEnabled(true)
                 .setGraphicsCardEnabled(true).build();
 
+        dispenseChainPattern();
+        mediatorBehavioralPattern();
         testTemplatePattern();
         prototypeDesignPattern();
         testClassAdapter();
         testObjectAdapter();
 
+    }
+
+    private static void dispenseChainPattern(){
+        ATMDispenseChain dispenseChain = new ATMDispenseChain();
+
+        while (true){
+            int amount =0;
+            System.out.println("Enter Amount to dispense");
+            Scanner input = new Scanner(System.in);
+            amount = input.nextInt();
+
+            if(amount %10 != 0){
+                System.out.println("Amont Should Be in multiple of 10s");
+                return;
+            }
+            dispenseChain.chain1.dispense(new Currency(amount));
+        }
+    }
+
+    private static void mediatorBehavioralPattern() {
+        ChatMediator mediator = new ChatMediatorImpl();
+        User user1 = new UserImpl(mediator,"Pankaj");
+        User user2 = new UserImpl(mediator,"sagor");
+        User user3 = new UserImpl(mediator,"Nodi");
+
+        mediator.addUser(user1);
+        mediator.addUser(user2);
+        mediator.addUser(user3);
+
+        user1.send("Hi All");
+        user2.send("Hi 2");
     }
 
     private static void testTemplatePattern() {

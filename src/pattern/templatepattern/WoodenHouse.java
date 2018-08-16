@@ -1,4 +1,4 @@
-package templatepattern;
+package pattern.templatepattern;
 
 /**
  * Created by Manik on 8/9/2018.
