@@ -1,4 +1,4 @@
-package pattern.templatepattern;
+package pattern.BehavioralPattern.templatepattern;
 
 /**
  * Created by Manik on 8/9/2018.

@@ -1,4 +1,4 @@
-package pattern.chainofresponsibility;
+package pattern.BehavioralPattern.chainofresponsibility;
 
 /**
  * Created by Manik on 8/16/2018.

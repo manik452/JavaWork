@@ -1,17 +1,20 @@
+import pattern.BehavioralPattern.ObserverPattern.MyTopic;
+import pattern.BehavioralPattern.ObserverPattern.MyTopicSubscriber;
+import pattern.BehavioralPattern.ObserverPattern.Observer;
 import pattern.Employee;
 import pattern.StructuralAdapterDesignPattern.SocketAdapter;
 import pattern.StructuralAdapterDesignPattern.SocketObjectAdapterImpl;
 import pattern.StructuralAdapterDesignPattern.Volt;
 import pattern.builderDesign.Computer;
-import pattern.chainofresponsibility.ATMDispenseChain;
-import pattern.chainofresponsibility.Currency;
-import pattern.mediator.ChatMediator;
-import pattern.mediator.ChatMediatorImpl;
-import pattern.mediator.User;
-import pattern.mediator.UserImpl;
-import pattern.templatepattern.GlassHouse;
-import pattern.templatepattern.HouseTemplate;
-import pattern.templatepattern.WoodenHouse;
+import pattern.BehavioralPattern.chainofresponsibility.ATMDispenseChain;
+import pattern.BehavioralPattern.chainofresponsibility.Currency;
+import pattern.BehavioralPattern.mediator.ChatMediator;
+import pattern.BehavioralPattern.mediator.ChatMediatorImpl;
+import pattern.BehavioralPattern.mediator.User;
+import pattern.BehavioralPattern.mediator.UserImpl;
+import pattern.BehavioralPattern.templatepattern.GlassHouse;
+import pattern.BehavioralPattern.templatepattern.HouseTemplate;
+import pattern.BehavioralPattern.templatepattern.WoodenHouse;
 
 import java.util.List;
 import java.util.Scanner;
@@ -25,6 +28,7 @@ public class Main {
                 "500 GB", "2 GB").setBluetoothEnabled(true)
                 .setGraphicsCardEnabled(true).build();
 
+        observerDesignPattern();
         dispenseChainPattern();
         mediatorBehavioralPattern();
         testTemplatePattern();
@@ -32,6 +36,33 @@ public class Main {
         testClassAdapter();
         testObjectAdapter();
 
+    }
+
+    private static void observerDesignPattern() {
+
+        //Create Subject
+        MyTopic topic = new MyTopic();
+
+        //Create Observer
+        Observer obj1 = new MyTopicSubscriber("Obj1");
+        Observer obj2 = new MyTopicSubscriber("Obj2");
+        Observer obj3 = new MyTopicSubscriber("Obj3");
+
+        //register Observers to subject
+        topic.register(obj1);
+        topic.register(obj2);
+        topic.register(obj3);
+
+        //attach observer to subject
+        obj1.setSubject(topic);
+        obj2.setSubject(topic);
+        obj3.setSubject(topic);
+
+        //check if any update is available
+        obj1.update();
+
+        //now send message to subject
+        topic.postMessage("New Message");
     }
 
     private static void dispenseChainPattern(){

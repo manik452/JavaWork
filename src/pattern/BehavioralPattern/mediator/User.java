@@ -1,4 +1,4 @@
-package pattern.mediator;
+package pattern.BehavioralPattern.mediator;
 
 /**
  * Created by Manik on 8/13/2018.
