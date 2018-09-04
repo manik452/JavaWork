@@ -1,6 +1,10 @@
 import pattern.BehavioralPattern.ObserverPattern.MyTopic;
 import pattern.BehavioralPattern.ObserverPattern.MyTopicSubscriber;
 import pattern.BehavioralPattern.ObserverPattern.Observer;
+import pattern.BehavioralPattern.strategyDesignPattern.CreditCardStrategy;
+import pattern.BehavioralPattern.strategyDesignPattern.Item;
+import pattern.BehavioralPattern.strategyDesignPattern.PaypalStrategy;
+import pattern.BehavioralPattern.strategyDesignPattern.ShoppingCart;
 import pattern.Employee;
 import pattern.StructuralAdapterDesignPattern.SocketAdapter;
 import pattern.StructuralAdapterDesignPattern.SocketObjectAdapterImpl;
@@ -28,6 +32,7 @@ public class Main {
                 "500 GB", "2 GB").setBluetoothEnabled(true)
                 .setGraphicsCardEnabled(true).build();
 
+        strategyDesignPattern();
         observerDesignPattern();
         dispenseChainPattern();
         mediatorBehavioralPattern();
@@ -36,6 +41,19 @@ public class Main {
         testClassAdapter();
         testObjectAdapter();
 
+    }
+
+    private static void strategyDesignPattern() {
+        ShoppingCart cart = new ShoppingCart();
+
+        Item item1 = new Item("1234",10);
+        Item item2= new Item("9876",20);
+
+        cart.addItem(item1);
+        cart.addItem(item2);
+
+        cart.pay(new PaypalStrategy("manik@gmail.com","13221"));
+        cart.pay(new CreditCardStrategy("manik","123456987546859","122","11/26"));
     }
 
     private static void observerDesignPattern() {
@@ -63,6 +81,7 @@ public class Main {
 
         //now send message to subject
         topic.postMessage("New Message");
+        topic.postMessage("New Message2");
     }
 
     private static void dispenseChainPattern(){
